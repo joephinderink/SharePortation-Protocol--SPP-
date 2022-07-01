@@ -1,8 +1,8 @@
-# Mobility Data Specification: Metrics
+# SharePortation Protocol: Metrics
 
-<a href="/metrics/"><img src="https://i.imgur.com/ouijHLj.png" width="120" align="right" alt="MDS Metrics Icon" border="0"></a>
+<a href="/metrics/"><img src="https://i.imgur.com/ouijHLj.png" width="120" align="right" alt=" SPP Metrics Icon" border="0"></a>
 
-The Metrics API endpoints are intended to be implemented by regulatory agencies, their third party appointed representatives, or city designated partners for requesting **historical** calculated [core metrics](core_metrics.md) and aggregations of MDS data. The Metrics API allows viewing of aggregate report data derived from some MDS endpoints that may be used for use cases like compliance, program effectiveness, and alignment on counts. The metrics [methodology](/metrics/metrics_methodology.md) definitions may be used by providers and third parties in their own calculations.
+The Metrics API endpoints are intended to be implemented by regulatory agencies, their third party appointed representatives, or city designated partners for requesting **historical** calculated [core metrics](core_metrics.md) and aggregations of  SPP data. The Metrics API allows viewing of aggregate report data derived from some  SPP endpoints that may be used for use cases like compliance, program effectiveness, and alignment on counts. The metrics [methodology](/metrics/metrics_methodology.md) definitions may be used by providers and third parties in their own calculations.
 
 [Metrics Examples](examples) are available with sample implementations.
 
@@ -23,7 +23,7 @@ The Metrics API endpoints are intended to be implemented by regulatory agencies,
 
 Objectives:
 
-- Cities need a number of clearly defined best practice metrics for operating, measuring, and managing emerging micro mobility programs using MDS data.
+- Cities need a number of clearly defined best practice metrics for operating, measuring, and managing emerging micro mobility programs using  SPP data.
 - There is currently no standard counting methodology that mobility providers and cities have agreed upon. This consequently causes friction when establishing a new mobility program and evaluating its impact.
 - Cities need to rely upon trusted data sources upon which to perform longer term studies on citizen impact.
 - Mobility providers would like consistent rules between each city deployment in order to make their operations more scalable.
@@ -38,8 +38,8 @@ Here are initial design use cases and scenarios for Metrics.
 
 **_Note:_** Metrics is designed to be served by agencies or their designated third parties.
 
-- Use Metrics to share aggregate data derived from disaggregated MDS feeds (e.g., Provider or Agency) with other city employees, city departments, vendors, trusted partners, and academic researchers, either via authenticated API access or extracted metrics data. 
-- Share agency MDS calculations back to providers to reduce disagreements about compliance, allowing a shared understanding and alignment on billing, enforcement, and policy, using a well-defined [methodology](/metrics/metrics_methodology.md).
+- Use Metrics to share aggregate data derived from disaggregated  SPP feeds (e.g., Provider or Agency) with other city employees, city departments, vendors, trusted partners, and academic researchers, either via authenticated API access or extracted metrics data. 
+- Share agency  SPP calculations back to providers to reduce disagreements about compliance, allowing a shared understanding and alignment on billing, enforcement, and policy, using a well-defined [methodology](/metrics/metrics_methodology.md).
 - Generating data which could then be used to feed reports to the public.
 - For agency internal and external use in visualizations, analysis, or other applications.
 
@@ -48,27 +48,24 @@ Here are initial design use cases and scenarios for Metrics.
 **_Note:_** Metrics is not designed as a substitute for disaggregated data. See the [Data Requirements](#data-requirements) section for details.
 
 - Agencies may designate third party partners to implement Metrics on their behalf.
-- Aggregate MDS data consistently from providers and make metrics available to agencies or research partners.
+- Aggregate  SPP data consistently from providers and make metrics available to agencies or research partners.
 
 ### Providers
 
 **_Note:_** Metrics is not designed to be served by providers, only by agencies and their designated partners.
 
-- The Metrics [methodology](/metrics/metrics_methodology.md) definitions may be referenced and used by providers for consistency in their own MDS calculations.
+- The Metrics [methodology](/metrics/metrics_methodology.md) definitions may be referenced and used by providers for consistency in their own  SPP calculations.
 
 [Top][toc]
 
 ## Data Requirements
 
-The Metrics API does not replace required MDS Provider and Agency endpoints (e.g., [trips](/provider#trips), [events](/provider#events), [vehicles](/provider#vehicles), etc.) in any way. City regulators use disaggregated data access for policy, data validation, auditing, and operational needs, and the Metrics API is not designed to serve these purposes.
+The Metrics API does not replace required  SPP Provider and Agency endpoints (e.g., [trips](/provider#trips), [events](/provider#events), [vehicles](/provider#vehicles), etc.) in any way. City regulators use disaggregated data access for policy, data validation, auditing, and operational needs, and the Metrics API is not designed to serve these purposes.
 
-Metrics may be a supplement for other more granular MDS data, and may be used to solve a few of a city's use cases and share with key partners.  
+Metrics may be a supplement for other more granular  SPP data, and may be used to solve a few of a city's use cases and share with key partners.  
 
 [Top][toc]
 
-## Beta Feature
-
-**[Beta feature](https://github.com/shareportation/mobility-data-specification/blob/feature-metrics/general-information.md#beta-features)**: _Yes (as of 1.0.0)_. [Leave feedback](https://github.com/shareportation/mobility-data-specification/issues/671) 
 
 The Metrics API and all of its endpoints are marked as a [beta feature](https://github.com/shareportation/mobility-data-specification/blob/feature-metrics/general-information.md#beta-features). It has not been tested in real world scenarios, and may be adjusted in future releases.
 
@@ -98,15 +95,15 @@ Further scopes and requirements may be added at the discretion of the Agency, de
 
 ## Data Redaction
 
-Some combinations of dimensions, filters, time, and geography may return a small count of trips, which could increase a privacy risk of re-identification. To correct for that, Metrics does not return data below a certain count of results.  This data redaction is called k-anonymity, and the threshold is set at a k-value of 10. For more explanation of this methodology, see our [Data Redaction Guidance document](https://github.com/shareportation/mobility-data-specification/wiki/MDS-Data-Redaction).
+Some combinations of dimensions, filters, time, and geography may return a small count of trips, which could increase a privacy risk of re-identification. To correct for that, Metrics does not return data below a certain count of results.  This data redaction is called k-anonymity, and the threshold is set at a k-value of 10. For more explanation of this methodology, see our [Data Redaction Guidance document](https://github.com/shareportation/mobility-data-specification/wiki/ SPP-Data-Redaction).
 
 **If the query returns fewer than `10` trips in a count, then that row's count value is returned as "-1".** Note "0" values are also returned as "-1" since the goal is to group both low and no count values together for privacy. 
 
-The OMF suggests a k-value of 10 is an appropriate starting point for safe anonymization, absent analysis and a further decision from the agency. As Metrics is in [beta](#beta-feature), this value may be adjusted in future releases and/or may become dynamic to account for specific categories of use cases and users. To improve the specification and to inform future guidance, beta users are encouraged to share their feedback and questions about k-values on this [discussion thread](https://github.com/shareportation/mobility-data-specification/discussions/622).
+The SharePortation suggests a k-value of 10 is an appropriate starting point for safe anonymization, absent analysis and a further decision from the agency. As Metrics is in [beta](#beta-feature), this value may be adjusted in future releases and/or may become dynamic to account for specific categories of use cases and users. To improve the specification and to inform future guidance, beta users are encouraged to share their feedback and questions about k-values on this [discussion thread](https://github.com/shareportation/mobility-data-specification/discussions/622).
 
 The k-value being used is always returned in the Metrics Query API [response](/metrics#response-1) to provide important context for the data consumer on the data redaction that is occurring.
 
-Using k-anonymity will reduce, but not necessarily eliminate the risk that an individual could be re-identified in a dataset, and this data should still be treated as sensitive. This is just one part of good privacy protection practices, which you can read more about in our [MDS Privacy Guide for Cities](https://github.com/shareportation/governance/blob/main/documents/OMF-MDS-Privacy-Guide-for-Cities.pdf). 
+Using k-anonymity will reduce, but not necessarily eliminate the risk that an individual could be re-identified in a dataset, and this data should still be treated as sensitive. This is just one part of good privacy protection practices, which you can read more about in our [ SPP Privacy Guide for Cities](https://github.com/shareportation/governance/blob/main/documents/SharePortation- SPP-Privacy-Guide-for-Cities.pdf). 
 
 [Top][toc]
 

@@ -1,7 +1,7 @@
-## Below is the MDS CODEOWNERS file, which dictates who is required for review on any given file.
+## Below is the  SPP CODEOWNERS file, which dictates who is required for review on any given file.
 
-## All MDS approvals
-* @shareportation/omf-admin
+## All  SPP approvals
+* @shareportation/SharePortation-admin
 
-## MDS Working Group
-* @shareportation/mds-maintainers @shareportation/omf-admin
+##  SPP Working Group
+* @shareportation/ SPP-maintainers @shareportation/SharePortation-admin
